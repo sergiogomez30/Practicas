@@ -25,9 +25,6 @@ public class QuizManager : MonoBehaviour
 
     private void Start()
     {
-        quizPanel.SetActive(true);
-        resultsPanel.SetActive(false);
-
         numerOfQuestions = QnA.Count;
 
         GenerateQuestion();
