@@ -405,8 +405,8 @@ GameObject:
   - component: {fileID: 766177468}
   - component: {fileID: 766177467}
   - component: {fileID: 766177466}
-  - component: {fileID: 766177465}
   - component: {fileID: 766177471}
+  - component: {fileID: 766177472}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -434,18 +434,6 @@ RectTransform:
   m_AnchoredPosition: {x: -849, y: -47}
   m_SizeDelta: {x: 360.5, y: 130.9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &766177465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766177463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a55cf71690698459acf5b3b6dcbbcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &766177466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,8 +463,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 766177465}
-          m_TargetAssemblyTypeName: OnMouseScale, Assembly-CSharp
+        - m_Target: {fileID: 766177472}
+          m_TargetAssemblyTypeName: OnMouseScaleMenu, Assembly-CSharp
           m_MethodName: PointerEnter
           m_Mode: 1
           m_Arguments:
@@ -491,8 +479,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 766177465}
-          m_TargetAssemblyTypeName: OnMouseScale, Assembly-CSharp
+        - m_Target: {fileID: 766177472}
+          m_TargetAssemblyTypeName: OnMouseScaleMenu, Assembly-CSharp
           m_MethodName: PointerExit
           m_Mode: 1
           m_Arguments:
@@ -524,10 +512,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.16509432, g: 0.37059283, b: 1, a: 1}
-    m_HighlightedColor: {r: 0, g: 0.21875906, b: 1, a: 1}
-    m_PressedColor: {r: 0, g: 0.21960784, b: 1, a: 1}
-    m_SelectedColor: {r: 0, g: 0.21960784, b: 1, a: 1}
+    m_NormalColor: {r: 0.4392157, g: 0.5764706, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.4392157, g: 0.5764706, b: 1, a: 1}
+    m_PressedColor: {r: 0.4392157, g: 0.5764706, b: 1, a: 1}
+    m_SelectedColor: {r: 0.4392157, g: 0.5764706, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -579,8 +567,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4ef827531cd554d4f99082446f0eefae, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -612,6 +600,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.3764706}
   m_EffectDistance: {x: 6.24, y: -8.59}
   m_UseGraphicAlpha: 1
+--- !u!114 &766177472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766177463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a3103bb8857fc429d87979058eea89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &863455713
 GameObject:
   m_ObjectHideFlags: 0

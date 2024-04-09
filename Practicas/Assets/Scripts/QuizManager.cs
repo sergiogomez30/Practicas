@@ -21,7 +21,7 @@ public class QuizManager : MonoBehaviour
 
     private float timer;
     public float changeTimer;
-    private bool answered;
+    [HideInInspector] public bool answered;
 
     private void Start()
     {
@@ -51,6 +51,7 @@ public class QuizManager : MonoBehaviour
             options[i].GetComponent<AnswerScript>().isCorrect = false;
             options[i].GetComponentInChildren<TextMeshProUGUI>().text = QnA[currentQuestion].Answers[i];
             options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
+            options[i].GetComponent<Transform>().localScale = new Vector2(1f, 1f);
 
             if (QnA[currentQuestion].CorrectAnswer == i + 1)
             {

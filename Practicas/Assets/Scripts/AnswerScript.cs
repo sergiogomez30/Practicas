@@ -23,7 +23,7 @@ public class AnswerScript : MonoBehaviour
             //Debug.Log("Correct Answer");
             quizManager.Answered("correct");
         }
-        else
+        else if(!quizManager.answered)
         {
             GetComponent<Image>().color = Color.red;
             //Debug.Log("Wrong Answer");
