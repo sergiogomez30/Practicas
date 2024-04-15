@@ -70,7 +70,7 @@ public class QuizManager : MonoBehaviour
     {
         quizPanel.SetActive(false);
         resultsPanel.SetActive(true);
-        scoreTxt.text = score + "/" + maxQuestions;
+        scoreTxt.text = "Puntuacion:\n" + score + "/" + maxQuestions;
     }
 
     void GenerateQuestion()

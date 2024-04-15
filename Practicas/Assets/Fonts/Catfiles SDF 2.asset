@@ -11,8 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - UNDERLAY_ON
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -119,11 +118,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Catfiles SDF
+  m_Name: Catfiles SDF 2
   m_EditorClassIdentifier: 
-  hashCode: 1026853554
+  hashCode: 1552022304
   material: {fileID: -8155920464700891353}
-  materialHashCode: -710509230
+  materialHashCode: -637601536
   m_Version: 1.1.0
   m_SourceFontFileGUID: df66ca214278cdc458f8e414ccde3944
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: df66ca214278cdc458f8e414ccde3944, type: 3}
