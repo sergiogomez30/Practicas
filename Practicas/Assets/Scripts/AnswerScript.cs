@@ -8,11 +8,11 @@ public class AnswerScript : MonoBehaviour
     [HideInInspector] public bool isCorrect;
     public QuizManager quizManager;
 
-    public Color startColor;
+    [HideInInspector] public Color startColor;
 
     private void Start()
     {
-        //startColor = GetComponent<Image>().color;
+        startColor = GetComponent<Image>().color;
     }
 
     public void Answer()

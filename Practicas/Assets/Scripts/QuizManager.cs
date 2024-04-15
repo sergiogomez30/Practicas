@@ -23,13 +23,18 @@ public class QuizManager : MonoBehaviour
     public float changeTimer;
     [HideInInspector] public bool answered;
 
+    private int questionCounter;
+    public int maxQuestions;
+
     private void Start()
     {
         numerOfQuestions = QnA.Count;
+        questionCounter = 0;
+        maxQuestions = 3;
+        answered = false;
 
         GenerateQuestion();
-
-        answered = false;
+        
     }
 
     private void Update()
@@ -65,11 +70,13 @@ public class QuizManager : MonoBehaviour
     {
         quizPanel.SetActive(false);
         resultsPanel.SetActive(true);
-        scoreTxt.text = score + "/" + numerOfQuestions;
+        scoreTxt.text = score + "/" + maxQuestions;
     }
 
     void GenerateQuestion()
     {
+        questionCounter += 1;
+
         if (answered)
         {
             QnA.RemoveAt(currentQuestion);
@@ -77,7 +84,7 @@ public class QuizManager : MonoBehaviour
             timer = 0;
         }
         
-        if (QnA.Count > 0)
+        if (questionCounter <= maxQuestions && QnA.Count > 0)
         {
             currentQuestion = Random.Range(0, QnA.Count);
 
@@ -100,12 +107,14 @@ public class QuizManager : MonoBehaviour
         {
             score += 1;
         }
-
-        for (int i = 0; i < options.Length; i++)
+        else
         {
-            if (QnA[currentQuestion].CorrectAnswer == i + 1)
+            for (int i = 0; i < options.Length; i++)
             {
-                options[i].GetComponent<Image>().color = Color.green;
+                if (QnA[currentQuestion].CorrectAnswer == i + 1)
+                {
+                    options[i].GetComponent<Image>().color = Color.green;
+                }
             }
         }
     }
