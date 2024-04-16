@@ -7,6 +7,7 @@ using TMPro;
 public class QuizManager : MonoBehaviour
 {
     public List<QuestionsAndAnswers> QnA;
+    public List<StarQuestion> starQuestionList;
     public GameObject[] options;
     private int currentQuestion;
 
@@ -26,11 +27,16 @@ public class QuizManager : MonoBehaviour
     private int questionCounter;
     public int maxQuestions;
 
+    private int starQuestionCounter;
+    public int starMaxQuestions;
+
     private void Start()
     {
         numerOfQuestions = QnA.Count;
         questionCounter = 0;
-        maxQuestions = 3;
+        maxQuestions = 4;
+        questionCounter = 0;
+        starMaxQuestions = 2;
         answered = false;
 
         GenerateQuestion();
@@ -44,7 +50,14 @@ public class QuizManager : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= changeTimer)
             {
-                GenerateQuestion();
+                if(questionCounter <= maxQuestions && QnA.Count > 0)
+                {
+                    GenerateQuestion();
+                }
+                else
+                {
+                    GenerateStarQuestion();
+                }
             }
         }
     }
@@ -66,11 +79,32 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    void SetStarAnswers()
+    {
+        for (int i = 0; i < options.Length; i++)
+        {
+            options[i].GetComponent<AnswerScript>().isCorrect = false;
+            options[i].GetComponentInChildren<TextMeshProUGUI>().text = starQuestionList[currentQuestion].starAnswers[i];
+            options[i].GetComponent<Image>().color = options[i].GetComponent<AnswerScript>().startColor;
+            options[i].GetComponent<Transform>().localScale = new Vector2(1f, 1f);
+
+            if (starQuestionList[currentQuestion].CorrectAnswer == i + 1)
+            {
+                options[i].GetComponent<AnswerScript>().isCorrect = true;
+            }
+        }
+    }
+
     public void FinishedQuiz()
+    {
+        GenerateStarQuestion();
+    }
+
+    public void FinishedStarQuiz()
     {
         quizPanel.SetActive(false);
         resultsPanel.SetActive(true);
-        scoreTxt.text = "Puntuacion:\n" + score + "/" + maxQuestions;
+        scoreTxt.text = "Puntuacion:\n" + score + "/" + (maxQuestions + starMaxQuestions);
     }
 
     void GenerateQuestion()
@@ -93,8 +127,32 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Out of Questions");
             FinishedQuiz();
+        }
+
+    }
+
+    void GenerateStarQuestion()
+    {
+        starQuestionCounter += 1;
+
+        if (answered)
+        {
+            starQuestionList.RemoveAt(currentQuestion);
+            answered = false;
+            timer = 0;
+        }
+
+        if (starQuestionCounter <= starMaxQuestions && starQuestionList.Count > 0)
+        {
+            currentQuestion = Random.Range(0, starQuestionList.Count);
+
+            questionTxt.text = starQuestionList[currentQuestion].starQuestion;
+            SetStarAnswers();
+        }
+        else
+        {
+            FinishedStarQuiz();
         }
 
     }
@@ -111,9 +169,19 @@ public class QuizManager : MonoBehaviour
         {
             for (int i = 0; i < options.Length; i++)
             {
-                if (QnA[currentQuestion].CorrectAnswer == i + 1)
+                if(questionCounter <= maxQuestions && QnA.Count > 0)
                 {
-                    options[i].GetComponent<Image>().color = Color.green;
+                    if (QnA[currentQuestion].CorrectAnswer == i + 1)
+                    {
+                        options[i].GetComponent<Image>().color = Color.green;
+                    }
+                }
+                else
+                {
+                    if (starQuestionList[currentQuestion].CorrectAnswer == i + 1)
+                    {
+                        options[i].GetComponent<Image>().color = Color.green;
+                    }
                 }
             }
         }
