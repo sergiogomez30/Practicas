@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class AnswerScript : MonoBehaviour
 {
-    [HideInInspector] public bool isCorrect;
-    public QuizManager quizManager;
-
     [HideInInspector] public Color startColor;
+    [HideInInspector] public bool isCorrect;
+
+    [HideInInspector] public QuizManager scriptQuizManager;
 
     private void Start()
     {
@@ -17,19 +17,19 @@ public class AnswerScript : MonoBehaviour
 
     public void Answer()
     {
-        if (isCorrect)
+        if(!scriptQuizManager.answered)
         {
-            GetComponent<Image>().color = Color.green;
-            //Debug.Log("Correct Answer");
-            quizManager.Answered("correct");
+            if (isCorrect)
+            {
+                GetComponent<Image>().color = Color.green;
+                scriptQuizManager.Answered("correct");
+            }
+            else if (!scriptQuizManager.answered)
+            {
+                GetComponent<Image>().color = Color.red;
+                scriptQuizManager.Answered("incorrect");
+            }
         }
-        else if(!quizManager.answered)
-        {
-            GetComponent<Image>().color = Color.red;
-            //Debug.Log("Wrong Answer");
-            quizManager.Answered("incorrect");
-        }
-
     }
 }
 

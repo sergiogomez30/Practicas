@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    public void LoadGameScene()
+    public void LoadRulesScene()
     {
-        SceneManager.LoadScene("QuizScene");
+        SceneManager.LoadScene("RulesScene");
     } 
 }

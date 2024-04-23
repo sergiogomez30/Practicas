@@ -20,7 +20,7 @@ public class QuizManager : MonoBehaviour
     private int numerOfQuestions;
     private int score;
 
-    private float timer;
+    private float answerTimer;
     public float changeTimer;
     [HideInInspector] public bool answered;
 
@@ -30,6 +30,12 @@ public class QuizManager : MonoBehaviour
     private int starQuestionCounter;
     public int starMaxQuestions;
 
+    private float finishedQuizTimer;
+    public float changeQuizManagerTimer;
+    [HideInInspector] public bool finishedQuiz;
+
+    public GameManager scriptGameManager;
+
     private void Start()
     {
         numerOfQuestions = QnA.Count;
@@ -38,6 +44,7 @@ public class QuizManager : MonoBehaviour
         questionCounter = 0;
         starMaxQuestions = 2;
         answered = false;
+        finishedQuiz = false;
 
         GenerateQuestion();
         
@@ -47,8 +54,8 @@ public class QuizManager : MonoBehaviour
     {
         if (answered)
         {
-            timer += Time.deltaTime;
-            if (timer >= changeTimer)
+            answerTimer += Time.deltaTime;
+            if (answerTimer >= changeTimer)
             {
                 if(questionCounter <= maxQuestions && QnA.Count > 0)
                 {
@@ -60,7 +67,17 @@ public class QuizManager : MonoBehaviour
                 }
             }
         }
+
+        if (finishedQuiz)
+        {
+            finishedQuizTimer += Time.deltaTime;
+            if(finishedQuizTimer >= changeQuizManagerTimer)
+            {
+                changeQuizManager();
+            }
+        }
     }
+
 
     void SetAnswers()
     {
@@ -105,6 +122,14 @@ public class QuizManager : MonoBehaviour
         quizPanel.SetActive(false);
         resultsPanel.SetActive(true);
         scoreTxt.text = "Puntuacion:\n" + score + "/" + (maxQuestions + starMaxQuestions);
+        finishedQuiz = true;
+    }
+
+    private void changeQuizManager()
+    {
+        scriptGameManager.removeQuizManager();
+        resultsPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void GenerateQuestion()
@@ -115,7 +140,7 @@ public class QuizManager : MonoBehaviour
         {
             QnA.RemoveAt(currentQuestion);
             answered = false;
-            timer = 0;
+            answerTimer = 0;
         }
         
         if (questionCounter <= maxQuestions && QnA.Count > 0)
@@ -140,7 +165,7 @@ public class QuizManager : MonoBehaviour
         {
             starQuestionList.RemoveAt(currentQuestion);
             answered = false;
-            timer = 0;
+            answerTimer = 0;
         }
 
         if (starQuestionCounter <= starMaxQuestions && starQuestionList.Count > 0)

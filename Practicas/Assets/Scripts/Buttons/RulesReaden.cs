@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RulesReaden : MonoBehaviour
 {
-    public GameObject instruccionsPanel;
-    public GameObject choicePanel;
-
-    public void startQuiz()
+    public void LoadGameScene()
     {
-        instruccionsPanel.SetActive(false);
-        choicePanel.SetActive(true);
+        SceneManager.LoadScene("QuizScene");
     }
 }
